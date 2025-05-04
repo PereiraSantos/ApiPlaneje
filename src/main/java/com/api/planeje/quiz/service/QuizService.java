@@ -5,8 +5,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-
-import com.api.planeje.revisionQuiz.entity.RevisionQuiz;
 import com.api.planeje.quiz.dao.QuizRepository;
 import com.api.planeje.quiz.entity.Quiz;
 
@@ -21,10 +19,9 @@ public class QuizService {
     }
 
     public String saveQuiz(Quiz body) {
-        Quiz revision = new  Quiz();
+        Quiz revision = new Quiz();
         revision.setTopic(body.getTopic());
         revision.setDescription(body.getDescription());
-
 
         quizRepository.save(revision);
         return "Salvo com succeso!!!";

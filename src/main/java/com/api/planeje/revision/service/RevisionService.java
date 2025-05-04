@@ -24,6 +24,7 @@ public class RevisionService {
         revision.setTitle(body.getTitle());
         revision.setDescription(body.getDescription());
         revision.setDateCreational(body.getDateCreational());
+        revision.setIdRevisionTheme(body.getIdRevisionTheme());
 
         revisionRepository.save(revision);
         return "Salvo com succeso!!!";

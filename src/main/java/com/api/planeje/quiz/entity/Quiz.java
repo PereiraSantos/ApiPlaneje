@@ -15,14 +15,12 @@ import lombok.Setter;
 @Entity
 @Table(name = "quiz")
 public class Quiz {
+
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Integer id;
+
     private String topic;
+    
     private String description;
-
-
-
-
-
 }

@@ -16,13 +16,18 @@ import lombok.Setter;
 @Entity
 @Table(name = "annotation")
 public class Annotation {
+
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Integer id;
+
     private String title;
+
     private String text;
+
     @Column(name = "date_text")
     private String dateText;
+    
     @Column(name = "id_revision")
     private Integer idRevision;
 }

@@ -24,8 +24,6 @@ public class RevisionQuizService {
         revisionQuiz.setAnswer(body.getAnswer());
         revisionQuiz.setDateRevision(body.getDateRevision());
         revisionQuiz.setIdQuiz(body.getIdQuiz());
-        revisionQuiz.setTopic(body.getTopic());
-        revisionQuiz.setDescription(body.getDescription());
 
 
         revisionQuizRepository.save(revisionQuiz);

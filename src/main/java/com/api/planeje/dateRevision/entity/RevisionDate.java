@@ -1,5 +1,6 @@
-package com.api.planeje.user.entity;
+package com.api.planeje.dateRevision.entity;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -13,15 +14,16 @@ import lombok.Setter;
 @Setter
 @Data
 @Entity
-@Table(name = "users")
-public class User {
+@Table(name = "revision_date")
+public class RevisionDate {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Integer id;
 
-    private String login;
+    @Column(name = "date_revision")
+    private String dateRevision;
     
-    private String password;
-
+    @Column(name = "id_revision")
+    private Integer idRevision;
 }

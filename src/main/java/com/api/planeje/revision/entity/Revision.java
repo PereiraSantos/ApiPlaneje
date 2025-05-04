@@ -16,15 +16,18 @@ import lombok.Setter;
 @Entity
 @Table(name = "revision")
 public class Revision {
+    
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Integer id;
+
     private String title;
+
     private String description;
+
     @Column(name = "date_creational")
     private String dateCreational;
 
-
-
-
+    @Column(name = "id_revision_theme")
+    private Integer idRevisionTheme;
 }

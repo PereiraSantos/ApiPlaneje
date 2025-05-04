@@ -1,6 +1,5 @@
-package com.api.planeje.dateRevision.entity;
+package com.api.planeje.revisionTheme.entity;
 
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -14,16 +13,13 @@ import lombok.Setter;
 @Setter
 @Data
 @Entity
-@Table(name = "date_revision")
-public class DateRevision {
+@Table(name = "revision_theme")
+public class RevisionTheme {
+    
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Integer id;
-    private String date;
-    @Column(name = "id_revision")
-    private Integer idRevision;
 
-
-
+    private String description;
 
 }

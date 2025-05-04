@@ -12,34 +12,34 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.api.planeje.dateRevision.entity.DateRevision;
-import com.api.planeje.dateRevision.service.DateRevisionService;
+import com.api.planeje.dateRevision.entity.RevisionDate;
+import com.api.planeje.dateRevision.service.RevisionDateService;
 
 
 @RestController
-@RequestMapping("/date-revision")
-public class DateRevisionController {
+@RequestMapping("/revision/date")
+public class RevisionDateController {
     
     @Autowired
-    private DateRevisionService dateRevisionService;
+    private RevisionDateService dateRevisionService;
 
     @GetMapping()
-    public @ResponseBody List<DateRevision> GetDateRevision() {
+    public @ResponseBody List<RevisionDate> GetDateRevision() {
         return dateRevisionService.GetDateRevision();
     }
 
     @PostMapping()
-    public @ResponseBody String saveDateRevision(@RequestBody DateRevision body) {
+    public @ResponseBody String saveDateRevision(@RequestBody RevisionDate body) {
         return dateRevisionService.saveDateRevision(body);
     }
 
     @GetMapping("/{id}")
-    public @ResponseBody DateRevision getDateRevisivioById(@PathVariable String id) {
+    public @ResponseBody RevisionDate getDateRevisivioById(@PathVariable String id) {
         return dateRevisionService.getDateRevisivioById(Integer.valueOf(id));
     }
 
     @GetMapping("/search")
-    public @ResponseBody Iterable<DateRevision> filterDateRevisionTitle(@RequestParam(value = "title") String title) {
+    public @ResponseBody Iterable<RevisionDate> filterDateRevisionTitle(@RequestParam(value = "title") String title) {
         return dateRevisionService.filterDateRevisionTitle(title);
     }
 

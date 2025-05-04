@@ -16,7 +16,7 @@ import com.api.planeje.revisionQuiz.entity.RevisionQuiz;
 import com.api.planeje.revisionQuiz.service.RevisionQuizService;
 
 @RestController
-@RequestMapping("/revision-quiz")
+@RequestMapping("/revision/quiz")
 public class RevisionQuizController {
     
     @Autowired

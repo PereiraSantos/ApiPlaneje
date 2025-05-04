@@ -16,19 +16,16 @@ import lombok.Setter;
 @Entity
 @Table(name = "revision_quiz")
 public class RevisionQuiz {
+    
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Integer id;
+
     private Integer answer;
+
     @Column(name="date_revision")
     private String dateRevision;
+    
     @Column(name="id_quiz")
     private Integer idQuiz;
-    private String topic;
-    private String description;
-
-
-
-
-
 }
