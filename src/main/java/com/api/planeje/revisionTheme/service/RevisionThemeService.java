@@ -20,12 +20,15 @@ public class RevisionThemeService {
 
     public String saveRevisionTheme(RevisionTheme body) {
         RevisionTheme revisionTheme = new RevisionTheme();
+
+        if (body.getId() != null) revisionTheme.setId(body.getId());
  
         revisionTheme.setDescription(body.getDescription());
   
 
         revisionThemeRepository.save(revisionTheme);
-        return "Salvo com succeso!!!";
+        
+        return body.getId() != null ? "Atualizado com succeso!!!" : "Salvo com succeso!!!";
     }
 
     public RevisionTheme getRevisivionThemeById(Integer id) {

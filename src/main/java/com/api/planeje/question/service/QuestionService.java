@@ -19,13 +19,17 @@ public class QuestionService {
     }
 
     public String saveQuestion(Question body) {
-        Question revision = new Question();
-        revision.setIdQuiz(body.getIdQuiz());
-        revision.setDescription(body.getDescription());
-        revision.setAnswer(body.getAnswer());
+        Question question = new Question();
 
-        questionRepository.save(revision);
-        return "Salvo com succeso!!!";
+        if (body.getId() != null) question.setId(body.getId());
+
+        question.setIdQuiz(body.getIdQuiz());
+        question.setDescription(body.getDescription());
+        question.setAnswer(body.getAnswer());
+
+        questionRepository.save(question);
+
+        return body.getId() != null ? "Atualizado com succeso!!!" : "Salvo com succeso!!!";
     }
 
     public Question getQuestionById(Integer id) {

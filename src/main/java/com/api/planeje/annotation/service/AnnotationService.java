@@ -22,14 +22,18 @@ public class AnnotationService {
 
     public String saveAnnotation(Annotation body) {
         Annotation annotation = new Annotation();
+
+        if (body.getId() != null) annotation.setId(body.getId());
+
         annotation.setTitle(body.getTitle());
         annotation.setText(body.getText());
         annotation.setDateText(body.getDateText());
         annotation.setIdRevision(body.getIdRevision());
 
         annotationRepository.save(annotation);
-        return "Salvo com succeso!!!";
+        return body.getId() != null ? "Atualizado com succeso!!!" : "Salvo com succeso!!!";
     }
+    
 
     public Annotation getAnnotationById(Integer id) {
         return annotationRepository.getAnnotationById(id);

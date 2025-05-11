@@ -21,13 +21,17 @@ public class RevisionQuizService {
 
     public String saveRevisionQuiz(RevisionQuiz body) {
         RevisionQuiz revisionQuiz = new RevisionQuiz();
+
+        if (body.getId() != null) revisionQuiz.setId(body.getId());
+
         revisionQuiz.setAnswer(body.getAnswer());
         revisionQuiz.setDateRevision(body.getDateRevision());
         revisionQuiz.setIdQuiz(body.getIdQuiz());
 
 
         revisionQuizRepository.save(revisionQuiz);
-        return "Salvo com succeso!!!";
+        
+        return body.getId() != null ? "Atualizado com succeso!!!" : "Salvo com succeso!!!";
     }
 
     public RevisionQuiz getRevisivionQuizById(Integer id) {

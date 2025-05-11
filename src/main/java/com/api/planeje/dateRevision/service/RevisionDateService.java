@@ -20,11 +20,14 @@ public class RevisionDateService {
 
     public String saveDateRevision(RevisionDate body) {
         RevisionDate revision = new RevisionDate();
+
+        if (body.getId() != null) revision.setId(body.getId());
+
         revision.setDateRevision(body.getDateRevision());
         revision.setIdRevision(body.getIdRevision());
 
         dateRevisionRepository.save(revision);
-        return "Salvo com succeso!!!";
+        return body.getId() != null ? "Atualizado com succeso!!!" : "Salvo com succeso!!!";
     }
 
     public RevisionDate getDateRevisivioById(Integer id) {

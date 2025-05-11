@@ -19,12 +19,16 @@ public class QuizService {
     }
 
     public String saveQuiz(Quiz body) {
-        Quiz revision = new Quiz();
-        revision.setTopic(body.getTopic());
-        revision.setDescription(body.getDescription());
+        Quiz quiz = new Quiz();
 
-        quizRepository.save(revision);
-        return "Salvo com succeso!!!";
+        if (body.getId() != null) quiz.setId(body.getId());
+
+        quiz.setTopic(body.getTopic());
+        quiz.setDescription(body.getDescription());
+
+        quizRepository.save(quiz);
+        
+        return body.getId() != null ? "Atualizado com succeso!!!" : "Salvo com succeso!!!";
     }
 
     public Quiz getQuizById(Integer id) {

@@ -21,13 +21,17 @@ public class RevisionService {
 
     public String saveRevision(Revision body) {
         Revision revision = new Revision();
+
+        if (body.getId() != null) revision.setId(body.getId());
+
         revision.setTitle(body.getTitle());
         revision.setDescription(body.getDescription());
         revision.setDateCreational(body.getDateCreational());
         revision.setIdRevisionTheme(body.getIdRevisionTheme());
 
         revisionRepository.save(revision);
-        return "Salvo com succeso!!!";
+        
+        return body.getId() != null ? "Atualizado com succeso!!!" : "Salvo com succeso!!!";
     }
 
     public Revision getRevisivioById(Integer id) {
