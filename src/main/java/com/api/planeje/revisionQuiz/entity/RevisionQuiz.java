@@ -2,8 +2,6 @@ package com.api.planeje.revisionQuiz.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import lombok.Data;
@@ -18,7 +16,6 @@ import lombok.Setter;
 public class RevisionQuiz {
     
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Integer id;
 
     private Integer answer;
@@ -28,4 +25,6 @@ public class RevisionQuiz {
     
     @Column(name="id_quiz")
     private Integer idQuiz;
+
+    private Integer disable;
 }

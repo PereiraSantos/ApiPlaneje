@@ -21,11 +21,20 @@ public class QuestionService {
     public String saveQuestion(Question body) {
         Question question = new Question();
 
-        if (body.getId() != null) question.setId(body.getId());
+        if (body.getId() != null){
+            question.setId(body.getId());
+        } else {
+            Integer id = questionRepository.lastId();
+            id = id == null ? 1 : id + 1;
+
+            question.setId(id);
+            question.setDisable(0);
+        }
 
         question.setIdQuiz(body.getIdQuiz());
         question.setDescription(body.getDescription());
         question.setAnswer(body.getAnswer());
+        
 
         questionRepository.save(question);
 
@@ -38,5 +47,11 @@ public class QuestionService {
 
     public List<Question> filterQuestionTitle(String title) {
         return questionRepository.filterQuestionTitle(title);
+    }
+
+    public String updateQuestionById(Question body){
+        questionRepository.updateQuestionById(body.getDisable(), body.getId());
+
+        return "Atualizado com succeso!!!";
     }
 }

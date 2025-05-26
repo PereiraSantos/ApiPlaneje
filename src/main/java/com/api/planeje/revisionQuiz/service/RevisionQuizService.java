@@ -22,7 +22,15 @@ public class RevisionQuizService {
     public String saveRevisionQuiz(RevisionQuiz body) {
         RevisionQuiz revisionQuiz = new RevisionQuiz();
 
-        if (body.getId() != null) revisionQuiz.setId(body.getId());
+        if (body.getId() != null) {
+            revisionQuiz.setId(body.getId());
+        } else {
+            Integer id = revisionQuizRepository.lastId();
+            id = id == null ? 1 : id + 1;
+
+            revisionQuiz.setId(id);
+            revisionQuiz.setDisable(0);
+        }
 
         revisionQuiz.setAnswer(body.getAnswer());
         revisionQuiz.setDateRevision(body.getDateRevision());
@@ -41,4 +49,11 @@ public class RevisionQuizService {
     public List<RevisionQuiz> filterRevisionQuizTitle(String title) {
         return revisionQuizRepository.filterRevisionQuizTitle(title);
     }
+
+    public String updateRevisionQuizById(RevisionQuiz body){
+         revisionQuizRepository.updateRevisionQuizById(body.getDisable(), body.getId());
+         
+        return "Atualizado com succeso!!!";
+    }
+    
 }

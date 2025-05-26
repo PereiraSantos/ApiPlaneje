@@ -21,7 +21,15 @@ public class QuizService {
     public String saveQuiz(Quiz body) {
         Quiz quiz = new Quiz();
 
-        if (body.getId() != null) quiz.setId(body.getId());
+        if (body.getId() != null) {
+            quiz.setId(body.getId());
+        } else {
+            Integer id = quizRepository.lastId();
+            id = id == null ? 1 : id + 1;
+
+            quiz.setId(id);
+            quiz.setDisable(0);
+        }
 
         quiz.setTopic(body.getTopic());
         quiz.setDescription(body.getDescription());
@@ -37,5 +45,11 @@ public class QuizService {
 
     public List<Quiz> filterQuizTitle(String title) {
         return quizRepository.filterQuizTitle(title);
+    }
+
+    public String updateQuizById(Quiz body){
+        quizRepository.updateQuizById(body.getDisable(), body.getId());
+
+        return  "Atualizado com succeso!!!" ;
     }
 }

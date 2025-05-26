@@ -32,6 +32,11 @@ public class AnnotationController {
         return annotationService.saveAnnotation(body);
     }
 
+    @PostMapping("/update")
+    public @ResponseBody String updateAnnotationById(@RequestBody Annotation body) {
+        return annotationService.updateAnnotationById(body);
+    }
+
     @GetMapping("/{id}")
     public @ResponseBody Annotation getAnnotationById(@PathVariable String id) {
         return annotationService.getAnnotationById(Integer.valueOf(id));

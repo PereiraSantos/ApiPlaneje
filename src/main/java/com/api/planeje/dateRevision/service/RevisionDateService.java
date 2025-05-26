@@ -21,10 +21,19 @@ public class RevisionDateService {
     public String saveDateRevision(RevisionDate body) {
         RevisionDate revision = new RevisionDate();
 
-        if (body.getId() != null) revision.setId(body.getId());
+        if (body.getId() != null) {
+            revision.setId(body.getId());
+        } else {
+            Integer id = dateRevisionRepository.lastId();
+            id = id == null ? 1 : id + 1;
+
+            revision.setId(id);
+            revision.setDisable(0);
+        }
 
         revision.setDateRevision(body.getDateRevision());
         revision.setIdRevision(body.getIdRevision());
+        
 
         dateRevisionRepository.save(revision);
         return body.getId() != null ? "Atualizado com succeso!!!" : "Salvo com succeso!!!";
@@ -36,5 +45,11 @@ public class RevisionDateService {
 
     public List<RevisionDate> filterDateRevisionTitle(String title) {
         return dateRevisionRepository.filterDateRevisionTitle(title);
+    }
+
+    public String updateDateRevisionById(RevisionDate body){
+        dateRevisionRepository.updateDateRevisionById(body.getDisable(), body.getId());
+
+        return "Atualizado com succeso!!!";
     }
 }

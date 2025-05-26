@@ -22,7 +22,15 @@ public class RevisionService {
     public String saveRevision(Revision body) {
         Revision revision = new Revision();
 
-        if (body.getId() != null) revision.setId(body.getId());
+        if (body.getId() != null) {
+            revision.setId(body.getId());
+        } else {
+            Integer id = revisionRepository.lastId();
+            id = id == null ? 1 : id + 1;
+
+            revision.setId(id);
+            revision.setDisable(0);
+        }
 
         revision.setTitle(body.getTitle());
         revision.setDescription(body.getDescription());
@@ -40,5 +48,11 @@ public class RevisionService {
 
     public List<Revision> filterRevisionTitle(String title) {
         return revisionRepository.filterRevisionTitle(title);
+    }
+
+    public String updateRevisionById(Revision body){
+        revisionRepository.updateRevisionById(body.getDisable(), body.getId());
+        
+        return  "Atualizado com succeso!!!";
     }
 }

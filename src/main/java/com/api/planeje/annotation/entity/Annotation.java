@@ -2,8 +2,6 @@ package com.api.planeje.annotation.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import lombok.Data;
@@ -18,7 +16,6 @@ import lombok.Setter;
 public class Annotation {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Integer id;
 
     private String title;
@@ -30,4 +27,6 @@ public class Annotation {
     
     @Column(name = "id_revision")
     private Integer idRevision;
+
+    private Integer disable;
 }

@@ -33,6 +33,11 @@ public class RevisionDateController {
         return dateRevisionService.saveDateRevision(body);
     }
 
+    @PostMapping("/update")
+    public @ResponseBody String updateDateRevisionById(@RequestBody RevisionDate body) {
+        return dateRevisionService.updateDateRevisionById(body);
+    }
+
     @GetMapping("/{id}")
     public @ResponseBody RevisionDate getDateRevisivioById(@PathVariable String id) {
         return dateRevisionService.getDateRevisivioById(Integer.valueOf(id));

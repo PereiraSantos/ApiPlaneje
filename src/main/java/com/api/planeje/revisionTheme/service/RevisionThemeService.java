@@ -21,7 +21,15 @@ public class RevisionThemeService {
     public String saveRevisionTheme(RevisionTheme body) {
         RevisionTheme revisionTheme = new RevisionTheme();
 
-        if (body.getId() != null) revisionTheme.setId(body.getId());
+        if (body.getId() != null) {
+            revisionTheme.setId(body.getId());
+        } else {
+            Integer id = revisionThemeRepository.lastId();
+            id = id == null ? 1 : id + 1;
+
+            revisionTheme.setId(id);
+            revisionTheme.setDisable(0);
+        }
  
         revisionTheme.setDescription(body.getDescription());
   
@@ -37,5 +45,9 @@ public class RevisionThemeService {
 
     public List<RevisionTheme> filterRevisionThemeTitle(String title) {
         return revisionThemeRepository.filterRevisionThemeTitle(title);
+    }
+
+    public String updateRevisionThemeById(RevisionTheme body){
+        return revisionThemeRepository.updateRevisionThemeById(dody.getDisable(), body.getId());
     }
 }

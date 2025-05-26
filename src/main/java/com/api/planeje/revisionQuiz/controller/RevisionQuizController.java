@@ -32,6 +32,11 @@ public class RevisionQuizController {
         return revisionQuizService.saveRevisionQuiz(body);
     }
 
+    @PostMapping("/update")
+    public @ResponseBody String updateRevisionQuizById(@RequestBody RevisionQuiz body) {
+        return revisionQuizService.updateRevisionQuizById(body);
+    }
+
     @GetMapping("/{id}")
     public @ResponseBody RevisionQuiz getRevisivionById(@PathVariable String id) {
         return revisionQuizService.getRevisivionQuizById(Integer.valueOf(id));

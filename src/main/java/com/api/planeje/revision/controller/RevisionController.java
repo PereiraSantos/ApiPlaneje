@@ -32,6 +32,11 @@ public class RevisionController {
         return revisionService.saveRevision(body);
     }
 
+    @PostMapping("/update")
+    public @ResponseBody String updateRevisionById(@RequestBody Revision body) {
+        return revisionService.updateRevisionById(body);
+    }
+
     @GetMapping("/{id}")
     public @ResponseBody Revision getRevisivioById(@PathVariable String id) {
         return revisionService.getRevisivioById(Integer.valueOf(id));

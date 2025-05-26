@@ -32,6 +32,11 @@ public class QuizController {
         return quizService.saveQuiz(body);
     }
 
+    @PostMapping("update")
+    public @ResponseBody String updateQuizById(@RequestBody Quiz body) {
+        return quizService.updateQuizById(body);
+    }
+
     @GetMapping("/{id}")
     public @ResponseBody Quiz getQuizById(@PathVariable String id) {
         return quizService.getQuizById(Integer.valueOf(id));

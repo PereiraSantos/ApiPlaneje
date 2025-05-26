@@ -33,6 +33,11 @@ public class RevisionThemeController {
         return revisionThemeService.saveRevisionTheme(body);
     }
 
+    @PostMapping("/update")
+    public @ResponseBody String updateRevisionThemeById(@RequestBody RevisionTheme body) {
+        return revisionThemeService.updateRevisionThemeById(body);
+    }
+
     @GetMapping("/{id}")
     public @ResponseBody RevisionTheme getRevisivioById(@PathVariable String id) {
         return revisionThemeService.getRevisivionThemeById(Integer.valueOf(id));

@@ -33,6 +33,11 @@ public class QuestionController {
         return questionService.saveQuestion(body);
     }
 
+    @PostMapping("/update")
+    public @ResponseBody String updateQuestionById(@RequestBody Question body) {
+        return questionService.updateQuestionById(body);
+    }
+
     @GetMapping("/{id}")
     public @ResponseBody Question getQuestionById(@PathVariable String id) {
         return questionService.getQuestionById(Integer.valueOf(id));
