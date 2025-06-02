@@ -3,6 +3,7 @@ package com.api.planeje.revisionTheme.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -12,9 +13,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.api.planeje.ResponseDto;
 import com.api.planeje.revisionTheme.entity.RevisionTheme;
 import com.api.planeje.revisionTheme.service.RevisionThemeService;
-
 
 @RestController
 @RequestMapping("/revision/theme")
@@ -29,7 +30,7 @@ public class RevisionThemeController {
     }
 
     @PostMapping()
-    public @ResponseBody String saveRevisionTheme(@RequestBody RevisionTheme body) {
+    public @ResponseBody ResponseEntity<ResponseDto> saveRevisionTheme(@RequestBody RevisionTheme body) {
         return revisionThemeService.saveRevisionTheme(body);
     }
 

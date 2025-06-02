@@ -3,6 +3,7 @@ package com.api.planeje.annotation.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.api.planeje.ResponseDto;
 import com.api.planeje.annotation.entity.Annotation;
 import com.api.planeje.annotation.service.AnnotationService;
 
@@ -28,7 +30,7 @@ public class AnnotationController {
     }
 
     @PostMapping()
-    public @ResponseBody String saveAnnotation(@RequestBody Annotation body) {
+    public @ResponseBody ResponseEntity<ResponseDto> saveAnnotation(@RequestBody Annotation body) {
         return annotationService.saveAnnotation(body);
     }
 

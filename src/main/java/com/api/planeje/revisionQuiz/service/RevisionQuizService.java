@@ -3,10 +3,11 @@ package com.api.planeje.revisionQuiz.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-
 import com.api.planeje.revisionQuiz.entity.RevisionQuiz;
+import com.api.planeje.ResponseDto;
 import com.api.planeje.revisionQuiz.dao.RevisionQuizRepository;
 
 @Service
@@ -19,7 +20,7 @@ public class RevisionQuizService {
         return revisionQuizRepository.findAll();
     }
 
-    public String saveRevisionQuiz(RevisionQuiz body) {
+    public ResponseEntity<ResponseDto> saveRevisionQuiz(RevisionQuiz body) {
         RevisionQuiz revisionQuiz = new RevisionQuiz();
 
         if (body.getId() != null) {
@@ -36,10 +37,11 @@ public class RevisionQuizService {
         revisionQuiz.setDateRevision(body.getDateRevision());
         revisionQuiz.setIdQuiz(body.getIdQuiz());
 
+        revisionQuiz = revisionQuizRepository.save(revisionQuiz);
 
-        revisionQuizRepository.save(revisionQuiz);
-        
-        return body.getId() != null ? "Atualizado com succeso!!!" : "Salvo com succeso!!!";
+        return ResponseEntity.ok().body(new ResponseDto(revisionQuiz.getId(),
+                body.getId() != null ? "Atualizado com succeso!!!" : "Salvo com succeso!!!"));
+
     }
 
     public RevisionQuiz getRevisivionQuizById(Integer id) {
@@ -50,10 +52,10 @@ public class RevisionQuizService {
         return revisionQuizRepository.filterRevisionQuizTitle(title);
     }
 
-    public String updateRevisionQuizById(RevisionQuiz body){
-         revisionQuizRepository.updateRevisionQuizById(body.getDisable(), body.getId());
-         
+    public String updateRevisionQuizById(RevisionQuiz body) {
+        revisionQuizRepository.updateRevisionQuizById(body.getDisable(), body.getId());
+
         return "Atualizado com succeso!!!";
     }
-    
+
 }

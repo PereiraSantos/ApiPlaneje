@@ -3,8 +3,10 @@ package com.api.planeje.dateRevision.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import com.api.planeje.ResponseDto;
 import com.api.planeje.dateRevision.dao.RevisionDateRepository;
 import com.api.planeje.dateRevision.entity.RevisionDate;
 
@@ -18,7 +20,7 @@ public class RevisionDateService {
         return dateRevisionRepository.findAll();
     }
 
-    public String saveDateRevision(RevisionDate body) {
+    public ResponseEntity<ResponseDto> saveDateRevision(RevisionDate body) {
         RevisionDate revision = new RevisionDate();
 
         if (body.getId() != null) {
@@ -33,10 +35,11 @@ public class RevisionDateService {
 
         revision.setDateRevision(body.getDateRevision());
         revision.setIdRevision(body.getIdRevision());
-        
 
-        dateRevisionRepository.save(revision);
-        return body.getId() != null ? "Atualizado com succeso!!!" : "Salvo com succeso!!!";
+        revision = dateRevisionRepository.save(revision);
+
+        return ResponseEntity.ok().body(new ResponseDto(revision.getId(),
+                body.getId() != null ? "Atualizado com succeso!!!" : "Salvo com succeso!!!"));
     }
 
     public RevisionDate getDateRevisivioById(Integer id) {
@@ -47,7 +50,7 @@ public class RevisionDateService {
         return dateRevisionRepository.filterDateRevisionTitle(title);
     }
 
-    public String updateDateRevisionById(RevisionDate body){
+    public String updateDateRevisionById(RevisionDate body) {
         dateRevisionRepository.updateDateRevisionById(body.getDisable(), body.getId());
 
         return "Atualizado com succeso!!!";

@@ -3,9 +3,10 @@ package com.api.planeje.revision.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-
+import com.api.planeje.ResponseDto;
 import com.api.planeje.revision.dao.RevisionRepository;
 import com.api.planeje.revision.entity.Revision;
 
@@ -19,7 +20,7 @@ public class RevisionService {
         return revisionRepository.findAll();
     }
 
-    public String saveRevision(Revision body) {
+    public ResponseEntity<ResponseDto> saveRevision(Revision body) {
         Revision revision = new Revision();
 
         if (body.getId() != null) {
@@ -37,9 +38,11 @@ public class RevisionService {
         revision.setDateCreational(body.getDateCreational());
         revision.setIdRevisionTheme(body.getIdRevisionTheme());
 
-        revisionRepository.save(revision);
-        
-        return body.getId() != null ? "Atualizado com succeso!!!" : "Salvo com succeso!!!";
+        revision = revisionRepository.save(revision);
+
+        return ResponseEntity.ok().body(new ResponseDto(revision.getId(),
+                body.getId() != null ? "Atualizado com succeso!!!" : "Salvo com succeso!!!"));
+
     }
 
     public Revision getRevisivioById(Integer id) {
@@ -50,9 +53,9 @@ public class RevisionService {
         return revisionRepository.filterRevisionTitle(title);
     }
 
-    public String updateRevisionById(Revision body){
+    public String updateRevisionById(Revision body) {
         revisionRepository.updateRevisionById(body.getDisable(), body.getId());
-        
-        return  "Atualizado com succeso!!!";
+
+        return "Atualizado com succeso!!!";
     }
 }

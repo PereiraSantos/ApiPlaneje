@@ -14,7 +14,7 @@ import com.api.planeje.revisionTheme.entity.RevisionTheme;
 import jakarta.transaction.Transactional;
 
 @Repository
-public interface RevisionThemeRepository extends JpaRepository<RevisionTheme, Integer>  {
+public interface RevisionThemeRepository extends JpaRepository<RevisionTheme, Integer> {
 
     @NativeQuery(value = "select * from revision_theme where title like CONCAT('%', :title, '%')")
     List<RevisionTheme> filterRevisionThemeTitle(String title);
@@ -29,7 +29,7 @@ public interface RevisionThemeRepository extends JpaRepository<RevisionTheme, In
     @Transactional
     @Modifying
     @Query(value = "update revision_theme set disable = :disable where id = :id", nativeQuery = true)
-    Integer updateRevisionById(@Param("disable") Integer disable, @Param("id") Integer id);
+    Integer updateRevisionThemeById(@Param("disable") Integer disable, @Param("id") Integer id);
 
     @NativeQuery(value = "select id from revision_theme order by id desc limit 1")
     Integer lastId();

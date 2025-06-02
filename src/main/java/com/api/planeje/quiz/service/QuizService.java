@@ -3,8 +3,10 @@ package com.api.planeje.quiz.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import com.api.planeje.ResponseDto;
 import com.api.planeje.quiz.dao.QuizRepository;
 import com.api.planeje.quiz.entity.Quiz;
 
@@ -18,7 +20,7 @@ public class QuizService {
         return quizRepository.findAll();
     }
 
-    public String saveQuiz(Quiz body) {
+    public ResponseEntity<ResponseDto> saveQuiz(Quiz body) {
         Quiz quiz = new Quiz();
 
         if (body.getId() != null) {
@@ -34,9 +36,10 @@ public class QuizService {
         quiz.setTopic(body.getTopic());
         quiz.setDescription(body.getDescription());
 
-        quizRepository.save(quiz);
-        
-        return body.getId() != null ? "Atualizado com succeso!!!" : "Salvo com succeso!!!";
+        quiz = quizRepository.save(quiz);
+
+        return ResponseEntity.ok().body(new ResponseDto(quiz.getId(),
+                body.getId() != null ? "Atualizado com succeso!!!" : "Salvo com succeso!!!"));
     }
 
     public Quiz getQuizById(Integer id) {
@@ -47,9 +50,9 @@ public class QuizService {
         return quizRepository.filterQuizTitle(title);
     }
 
-    public String updateQuizById(Quiz body){
+    public String updateQuizById(Quiz body) {
         quizRepository.updateQuizById(body.getDisable(), body.getId());
 
-        return  "Atualizado com succeso!!!" ;
+        return "Atualizado com succeso!!!";
     }
 }
