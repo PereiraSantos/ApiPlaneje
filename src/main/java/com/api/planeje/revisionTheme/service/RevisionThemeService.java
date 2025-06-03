@@ -30,8 +30,9 @@ public class RevisionThemeService {
             id = id == null ? 1 : id + 1;
 
             revisionTheme.setId(id);
-            revisionTheme.setDisable(0);
         }
+
+        revisionTheme.setDisable(0);
 
         revisionTheme.setDescription(body.getDescription());
 

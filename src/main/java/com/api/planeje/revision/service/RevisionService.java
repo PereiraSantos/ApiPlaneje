@@ -30,8 +30,10 @@ public class RevisionService {
             id = id == null ? 1 : id + 1;
 
             revision.setId(id);
-            revision.setDisable(0);
+           
         }
+
+        revision.setDisable(0);
 
         revision.setTitle(body.getTitle());
         revision.setDescription(body.getDescription());

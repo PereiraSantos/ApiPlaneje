@@ -30,8 +30,9 @@ public class RevisionQuizService {
             id = id == null ? 1 : id + 1;
 
             revisionQuiz.setId(id);
-            revisionQuiz.setDisable(0);
         }
+        
+        revisionQuiz.setDisable(0);
 
         revisionQuiz.setAnswer(body.getAnswer());
         revisionQuiz.setDateRevision(body.getDateRevision());

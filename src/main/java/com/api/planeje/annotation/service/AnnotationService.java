@@ -30,8 +30,10 @@ public class AnnotationService {
             id = id == null ? 1 : id + 1;
 
             annotation.setId(id);
-            annotation.setDisable(0);
+     
         }
+
+        annotation.setDisable(0);
 
         annotation.setTitle(body.getTitle());
         annotation.setText(body.getText());

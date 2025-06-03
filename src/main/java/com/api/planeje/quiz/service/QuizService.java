@@ -30,8 +30,10 @@ public class QuizService {
             id = id == null ? 1 : id + 1;
 
             quiz.setId(id);
-            quiz.setDisable(0);
+ 
         }
+
+        quiz.setDisable(0);
 
         quiz.setTopic(body.getTopic());
         quiz.setDescription(body.getDescription());
